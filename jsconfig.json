@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src", "src/model/.js", "scripts/utils.js", "scripts/serve.js"],
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
