@@ -13,12 +13,17 @@ const gradient = () => {
   }
 }
 const Gradient = () => {
-  const colors = useContext(DataContext)
-  // console.log(colors)
+  const colors = useContext(DataContext).toDoList
+  const { currentIndex } = useContext(DataContext)
+  console.log(currentIndex)
   return (
     <div style={gradient()}>
       {colors.map((item, i) => (
-        <GradientColor key={item + i} active={true} colors={item.colors} />
+        <GradientColor
+          key={item + i}
+          active={i === currentIndex ? true : false}
+          colors={item.colors}
+        />
       ))}
     </div>
   )

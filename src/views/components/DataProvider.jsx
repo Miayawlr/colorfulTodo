@@ -6,10 +6,24 @@ import React, {
   useReducer,
 } from 'react'
 import { getTodoList } from 'model/mine'
-const DataContext = createContext()
-
+const DataContext = createContext({})
+const NEXT = 'NEXT'
+const PRE = 'PRE'
+const defaultIndex = 0 //初始index
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'NEXT':
+      return action.index
+    case 'PRE':
+      return action.index
+    default:
+      break
+  }
+}
 const Data = ({ children }) => {
   const [toDoList, setToDoList] = useState([])
+  const [currentIndex, dispatch] = useReducer(reducer, defaultIndex)
+
   const todoListCallback = useCallback(() => {
     const doThingList = async () => {
       try {
@@ -26,8 +40,10 @@ const Data = ({ children }) => {
     todoListCallback()
   }, [todoListCallback])
   return (
-    <DataContext.Provider value={toDoList}>{children}</DataContext.Provider>
+    <DataContext.Provider value={{ toDoList, currentIndex, dispatch }}>
+      {children}
+    </DataContext.Provider>
   )
 }
 
-export { DataContext, Data }
+export { NEXT, PRE, DataContext, Data }
