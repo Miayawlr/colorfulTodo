@@ -1,20 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import StyledTask, { StyledSwitch, CheckBox, Slider } from './style'
 
-const Switch = ({ onChange, initalChecked = false, color = '#ff6262' }) => {
+const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
   const [checked, setChecked] = useState(initalChecked)
+  const switchRef = useRef(null)
   const handleOnChange = () => {
     setChecked(!checked)
     if (!onChange) return
-    onChange(checked)
+    // console.log(checked + 'switch')
+    console.log(switchRef.current)
+    console.log(switchRef.current.value)
+    onChange(id)
   }
+
   return (
-    <StyledSwitch
-      initalChecked={initalChecked}
-      onChange={() => handleOnChange()}
-    >
-      <CheckBox name="id" color={color} defaultValue={checked} />
+    <StyledSwitch>
+      <CheckBox
+        ref={switchRef}
+        onChange={() => handleOnChange()}
+        checked={checked}
+        name="id"
+        color={color}
+        defaultValue={checked}
+      />
       <Slider />
     </StyledSwitch>
   )
@@ -26,21 +35,28 @@ function Task({
   initalChecked = false,
   color,
   onRemove,
-  children,
+  title,
+  id,
   ...rest
 }) {
-  const handleDelete = () => {
+  const [cheked, setChecked] = useState(false)
+  const handleDelete = (id) => {
     if (onRemove) {
-      onRemove('9')
+      onRemove(id)
     }
   }
-
+  // console.log(id)
   return (
     // initalChecked={initalChecked}
     <StyledTask {...rest}>
-      <Switch color={color} initalChecked={initalChecked} />
-      <span className={'task-name'}>{children}</span>
-      <span className={'task-delete'} onClick={() => handleDelete()}>
+      <Switch
+        color={color}
+        initalChecked={initalChecked}
+        id={id}
+        onChange={onChange}
+      />
+      <span className={'task-name'}>{title}</span>
+      <span className={'task-delete'} onClick={() => handleDelete(id)}>
         <i className={'fa fa-trash'}></i>
       </span>
     </StyledTask>

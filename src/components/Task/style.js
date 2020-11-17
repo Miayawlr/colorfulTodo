@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
-const switchChecked = (checkedStatus) => {
-  if (!checkedStatus) return `#eee`
+const switchChecked = (checkedStatus, color) => {
+  // console.log(checkedStatus, color)
+
+  if (checkedStatus) return color
+  return `#eee`
 }
 
 const StyledTask = styled.div`
@@ -58,7 +61,7 @@ const CheckBox = styled.input.attrs({ type: 'checkbox' })`
   opacity: 0;
   :checked + ${Slider} {
     background-color: ${({ defaultValue, color }) =>
-      defaultValue ? color : switchChecked(defaultValue)};
+      switchChecked(defaultValue, color)};
     ::before {
       transform: translateX(
         ${({ defaultValue }) => (defaultValue ? `${1.2}rem` : `${0}rem`)}

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import StyledTodo, { TodoBody, TodoHeader, TasksContainer } from './style'
 import Task from 'components/Task'
 // DETA
-function TodoTasks({ color, children, onRemove, tasksList }) {
+function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
   const lastBottom = (lastIndex, i) => {
     if (lastIndex === i) {
       return { borderBottom: 0 }
     }
   }
+  console.log(tasksList)
   return (
     <React.Fragment>
       <TasksContainer>
@@ -17,10 +18,13 @@ function TodoTasks({ color, children, onRemove, tasksList }) {
           {tasksList.map((task, i) => (
             <li key={task + i}>
               <Task
-                initalChecked={false}
+                title={task.title}
+                initalChecked={task.done}
                 color={color}
                 style={lastBottom(tasksList.length - 1, i)}
+                id={task.id}
                 onRemove={onRemove}
+                onChange={onChange}
                 children={children}
               />
             </li>
@@ -41,6 +45,7 @@ function Todo({
   title = '测试',
   ShowTasks = false,
   onRemove,
+  onChange,
   srIcon = true,
   ...rest
 }) {
@@ -83,6 +88,7 @@ function Todo({
             color={todoIconColor}
             children={children}
             onRemove={onRemove}
+            onChange={onChange}
           ></TodoTasks>
         )}
       </TodoBody>

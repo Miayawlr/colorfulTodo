@@ -1,4 +1,5 @@
 const fs = require('fs-extra')
+const { get } = require('http')
 const path = require('path')
 const url = require('url')
 const dataPath = path.join(__dirname, '../data/data.json')
@@ -35,7 +36,7 @@ const getData = async (file, name, id) => {
   const task = filterById(res, dataId)
   return task
 }
-
+// 获取代办条数
 const getTodoTaskNum = async (file) => {
   const res = await getFileAll(file)
   const countArr = []
@@ -47,9 +48,17 @@ const getTodoTaskNum = async (file) => {
   return { success: true, code: 200, count: countArr.length }
 }
 
+// 修改完成状态
+
+const changeTodoStatus = async (file, name, id) => {
+  const task = getData(file, name, id)
+  
+}
+
 module.exports = {
   getFileAll,
   getListByName,
   getData,
   getTodoTaskNum,
+  changeTodoStatus,
 }

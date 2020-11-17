@@ -20,3 +20,10 @@ export const getTodoNumCount = () => {
     method: 'get',
   })
 }
+
+export const editorTodoStatus = (name, id) => {
+  return instance({
+    url: `/editorToDoStatus?name=${name}&id=${id}`,
+    method: 'get',
+  })
+}

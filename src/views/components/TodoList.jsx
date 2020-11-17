@@ -16,7 +16,6 @@ const TodoList = () => {
   const { dispatch } = useContext(DataContext)
   const val = useContext(DataContext).toDoList
   const handleTouchStart = (evt) => {
-    // console.log(evt.touches[0].clientX)
     touch.startX = evt.touches[0].clientX
     touch.endX = 0
   }
@@ -44,7 +43,6 @@ const TodoList = () => {
 
   return (
     <React.Fragment>
-      {/* selected={!!selected} */}
       <StyledTodoContainer
         ref={containerRef}
         onTouchStart={(evt) => handleTouchStart(evt)}

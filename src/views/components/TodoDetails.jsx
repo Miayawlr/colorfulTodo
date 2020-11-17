@@ -27,7 +27,6 @@ const TodoDetails = ({ todoItem }) => {
     getDetails()
   }, [name])
 
-  // console.log(details)
   return (
     <StyledDetails>
       <HeaderBar
@@ -40,6 +39,7 @@ const TodoDetails = ({ todoItem }) => {
         rightIcon={'ellipsis-v'}
       />
       <Details
+        onChange={(val) => console.log(val)}
         style={{ boxShadow: 'none' }}
         todoIcon={details.icon}
         todoIconColor={colors[0]}

@@ -37,6 +37,6 @@ app.get('/getCountNum', (req, res) => {
 
 // 修改详情
 
-app.post('/editorToDo', (req, res) => {
+app.post('/editorToDoStatus', (req, res) => {
   fs.readFile(dataPath, 'utf-8', async (err, data) => {})
 })

@@ -24,6 +24,7 @@ const app = (req, res) => {
     if (method === 'get') {
       G._get[pathName](req, res)
     } else if (method === 'post') {
+      G._post[pathName](req, res)
     }
   } else {
     res.end('404 not found')
