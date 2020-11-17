@@ -1,4 +1,4 @@
-####  极简react todo app
+####  极简 React todo App
 
 ```shell
 # 安装依赖 
