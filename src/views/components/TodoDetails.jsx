@@ -10,7 +10,7 @@ const TodoDetails = ({ todoItem }) => {
   const query = useQuery()
   const name = query.get('name')
   const history = useHistory()
-  const [index, setIndex] = useState(0)
+  // const [index, setIndex] = useState(0)
   const [details, setDetails] = useState({})
   const [taskList, setTaskList] = useState([])
   const [colors, setColors] = useState([])
