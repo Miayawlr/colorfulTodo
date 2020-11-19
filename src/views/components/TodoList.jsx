@@ -1,6 +1,6 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { useTransition, animated } from 'react-spring'
+import { useTransition, animated, useSpring } from 'react-spring'
 import StyledTodoContainer, { ToDo } from './todostyle'
 import { NEXT, PRE, DataContext } from 'views/components/DataProvider'
 
@@ -23,7 +23,6 @@ const TodoList = () => {
     touch.endX = evt.touches[0].clientX
   }
   const handleTouchEnd = (evt) => {
-    console.log('test')
     if (!touch.endX || Math.abs(touch.endX - touch.startX) < 10) {
       return
     }
@@ -38,13 +37,15 @@ const TodoList = () => {
     }
   }
 
-  // animation
-  const transitions = useTransition(val, (item) => item.key, {
-    from: { transition: 'all 0.5s ease' },
-    enter: { transition: 'all 0.5s ease' },
-    leave: { transition: 'all 0.5s ease' },
+  // // animation
+  // const transitions = useTransition(val, (item) => item.key, {
+  //   from: { transition: 'all 0.5s ease' },
+  //   enter: { transition: 'all 0.5s ease' },
+  //   leave: { transition: 'all 0.5s ease' },
+  // })
+  const transitions = useTransition(3, {
+    transform: 'all 0.5s ease',
   })
-
   return (
     <React.Fragment>
       <StyledTodoContainer

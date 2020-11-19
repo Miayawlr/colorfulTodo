@@ -32,7 +32,12 @@ const ToDo = styled(Todo)`
 const StyledDetails = styled.div``
 // 详情
 
-const Details = styled(Todo).attrs({ ShowTasks: true })``
+const Details = styled(Todo).attrs({ ShowTasks: true })`
+  /* .todo-header,
+  .todo-body {
+    transform: translate3d(0, 2rem, 0);
+  } */
+`
 
 export default StyledTodoContainer
 export { ToDo, StyledDetails, Details }

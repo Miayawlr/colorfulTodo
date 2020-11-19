@@ -8,10 +8,8 @@ const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
   const handleOnChange = () => {
     setChecked(!checked)
     if (!onChange) return
-    // console.log(checked + 'switch')
-    console.log(switchRef.current)
-    console.log(switchRef.current.value)
-    onChange(id)
+    // console.log(switchRef.current)
+    onChange(!checked, id)
   }
 
   return (

@@ -5,6 +5,8 @@ const selectedVariant = css`
   visibility: hidden;
 `
 
+// const tranfrom
+
 const StyledTodo = styled.div`
   flex: 1;
   margin: 0 0.35rem;
@@ -17,6 +19,7 @@ const TodoHeader = styled.div`
   padding: 0.9rem ${({ theme }) => theme.basePadding}rem;
   height: 2rem;
   align-items: flex-start;
+  /* transform: translate3d(0, 2rem, 0); */
   .todo-icon {
     ${flexCenter()}
     width: 2.2rem;
@@ -32,6 +35,7 @@ const TodoHeader = styled.div`
 const TodoBody = styled.section`
   padding: 0 ${({ theme }) => theme.basePadding}rem;
   transform: translate3d(0, 9rem, 0);
+
   .todo-tips {
     opacity: 0.6;
     font-size: 0.7rem;

@@ -14,7 +14,7 @@ const getFileAll = (file) => {
 }
 
 const filterById = (data, id) => {
-  data = data.filter((item) => item.id === id)
+  data = data.tasks.filter((item) => item.id === id)
   return data
 }
 // 根据name 筛选数据
@@ -50,9 +50,10 @@ const getTodoTaskNum = async (file) => {
 
 // 修改完成状态
 
-const changeTodoStatus = async (file, name, id) => {
-  const task = getData(file, name, id)
-  
+const changeTodoStatus = async (file, name, id, status) => {
+  const task = await getData(file, name, id)
+  task[0].done = status
+  return task
 }
 
 module.exports = {

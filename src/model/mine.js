@@ -21,9 +21,10 @@ export const getTodoNumCount = () => {
   })
 }
 
-export const editorTodoStatus = (name, id) => {
+export const editorTodoStatus = (data) => {
   return instance({
-    url: `/editorToDoStatus?name=${name}&id=${id}`,
-    method: 'get',
+    url: '/editorToDoStatus',
+    method: 'post',
+    data,
   })
 }

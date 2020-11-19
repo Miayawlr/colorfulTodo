@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import StyledHeaderBar from './style'
 function HeaderBar({
-  title = 'todo',
+  title = 'TODO',
   leftIcon = 'bars',
   rightIcon = 'search',
   srIcon = true,

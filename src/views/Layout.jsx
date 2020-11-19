@@ -7,25 +7,35 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import TodoDetails from './components/TodoDetails'
 import './layout.css'
 import { Data } from './components/DataProvider'
+import { useTransition, animated, useSpring } from 'react-spring'
 const Layout = () => {
+  // const transitions = useTransition(null, {
+  //   from: { transform: 'translate3d(0,-100vh,0)' },
+  //   // enter: { transition: 'all 0.5s ease' },
+  //   // leave: { transition: 'all 0.5s ease' },
+  // })
+  const opactiyT = useSpring({
+    from: { opacity: 0.3, transition: 'all 1s ease' },
+    to: { opacity: 1 },
+  })
   return (
     <Router>
       <div className={'layout'}>
         <Route path={'/'} exact>
-          <div>
+          <animated.div>
             <Data>
               <HeaderBar />
               <Summary />
               <Gradient></Gradient>
               <TodoList />
             </Data>
-          </div>
+          </animated.div>
         </Route>
         <Switch>
-          {/* <Route path={'/details/:index'} component={TodoDetails} /> */}
-          {/* path={'/details'} */}
           <Route sensitive path={'/details'}>
-            <TodoDetails />
+            <animated.div style={opactiyT}>
+              <TodoDetails />
+            </animated.div>
           </Route>
         </Switch>
       </div>

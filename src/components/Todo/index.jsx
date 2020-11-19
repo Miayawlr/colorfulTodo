@@ -9,7 +9,7 @@ function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
       return { borderBottom: 0 }
     }
   }
-  console.log(tasksList)
+  // console.log(tasksList)
   return (
     <React.Fragment>
       <TasksContainer>
@@ -60,7 +60,7 @@ function Todo({
   return (
     <StyledTodo selected={selected} {...rest}>
       {/* Todo Header 头部 */}
-      <TodoHeader>
+      <TodoHeader className={'todo-header'}>
         <div className={'todo-icon'}>
           <i
             className={`fa fa-${todoIcon}`}
@@ -73,7 +73,7 @@ function Todo({
           </div>
         )}
       </TodoHeader>
-      <TodoBody>
+      <TodoBody className={'todo-body'}>
         <p className={'todo-tips'}>{tasks.length}Tasks</p>
         <h3 className={'todo-title'}>{title}</h3>
         <div className={'todo-progress'}>

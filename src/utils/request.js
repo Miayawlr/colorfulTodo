@@ -5,11 +5,12 @@ const instance = axios.create({
   timeout: 9999,
 })
 // requeset interceptor
+instance.defaults.headers.get['Content-Type'] = 'application/json'
 instance.interceptors.request.use(
   (config) => {
-    config.headers = {
-      'Content-Type': 'application/json',
-    }
+    // config.headers = {
+    //   'Content-Type': 'application/json;charest="utf-8"',
+    // }
     return config
   },
   (error) => {
