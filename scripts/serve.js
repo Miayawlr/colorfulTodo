@@ -2,7 +2,9 @@ const http = require('http')
 const fs = require('fs-extra')
 const path = require('path')
 const url = require('url')
+const stream = require('stream')
 const dataPath = path.join(__dirname, '../data/data.json')
+const imgPath = path.join(__dirname, '../src/assets/ava.jpg')
 // const dataBase = fs.readFileSync(dataPath, 'utf-8')
 const { app } = require('./request')
 const utils = require('./utils')
@@ -56,8 +58,10 @@ app.post('/editorToDoStatus', (req, res) => {
       }
     }
     const json_str = JSON.stringify(baseData)
-    await fs.writeFile(dataPath, json_str)
-    res.send(JSON.stringify({ success: true, code: 200, message: '修改成功' }))
+    await fs.writeFileSync(dataPath, json_str)
+    await res.send(
+      JSON.stringify({ success: true, code: 200, message: '修改成功' })
+    )
   })
 })
 
@@ -76,7 +80,9 @@ app.post('/delToDo', (req, res) => {
         datas[key]['tasks'] = v
       }
     }
-    await fs.writeFile(dataPath, JSON.stringify(baseData))
-    res.send(JSON.stringify({ success: true, code: 200, message: '删除成功' }))
+    await fs.writeFileSync(dataPath, JSON.stringify(baseData))
+    await res.send(
+      JSON.stringify({ success: true, code: 200, message: '删除成功' })
+    )
   })
 })

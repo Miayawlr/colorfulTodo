@@ -18,23 +18,10 @@ const TodoDetails = ({ todoItem }) => {
   const [id, setId] = useState(null)
   const [delId, setDelId] = useState(null)
   const [doneStatus, setDoneStatus] = useState(null)
-  const [status, setStatus] = useState(false)
   const handleGoBack = () => {
     history.push('/')
   }
 
-  // 获取详情
-  useEffect(() => {
-    const getDetails = async () => {
-      const res = await getTodoByName(name)
-      setTaskList(res.tasks)
-      setDetails({ ...res })
-      setColors(res.colors)
-      console.log(res)
-    }
-
-    getDetails()
-  }, [name])
   // 编辑
   useEffect(() => {
     if (id !== null) {
@@ -44,8 +31,7 @@ const TodoDetails = ({ todoItem }) => {
           name,
           status: doneStatus,
         }
-        console.log(parmas)
-        const res = await editorTodoStatus(JSON.stringify(parmas))
+        await editorTodoStatus(JSON.stringify(parmas))
       }
       editorStatus()
     }
@@ -64,6 +50,16 @@ const TodoDetails = ({ todoItem }) => {
       delDetailsTodo()
     }
   }, [delId, name])
+  // 获取详情
+  useEffect(() => {
+    const getDetails = async () => {
+      const res = await getTodoByName(name)
+      setTaskList(res.tasks)
+      setDetails({ ...res })
+      setColors(res.colors)
+    }
+    getDetails()
+  }, [name, delId, doneStatus])
   const handleChangeStatus = (status, id) => {
     setDoneStatus(status)
     setId(id)
