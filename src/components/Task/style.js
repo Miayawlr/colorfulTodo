@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const switchChecked = (checkedStatus, color) => {
   // console.log(checkedStatus, color)
-
   if (checkedStatus) return color
   return `#eee`
 }

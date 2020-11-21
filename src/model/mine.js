@@ -28,3 +28,12 @@ export const editorTodoStatus = (data) => {
     data,
   })
 }
+
+// 删除
+export const delTodo = (data) => {
+  return instance({
+    url: '/delToDo',
+    method: 'post',
+    data,
+  })
+}

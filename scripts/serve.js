@@ -56,8 +56,27 @@ app.post('/editorToDoStatus', (req, res) => {
       }
     }
     const json_str = JSON.stringify(baseData)
-    // console.log(json_str)
     await fs.writeFile(dataPath, json_str)
     res.send(JSON.stringify({ success: true, code: 200, message: '修改成功' }))
+  })
+})
+
+app.post('/delToDo', (req, res) => {
+  fs.readFile(dataPath, 'utf-8', async (err, data) => {
+    const params = JSON.parse(req.body)
+    const { id } = params
+    const { name } = params
+    const baseData = JSON.parse(data)
+    const datas = baseData.data
+    const v = datas
+      .filter((item) => item.name === name)[0]
+      ['tasks'].filter((task) => task.id !== id)
+    for (let key in datas) {
+      if (datas[key]['name'] === name) {
+        datas[key]['tasks'] = v
+      }
+    }
+    await fs.writeFile(dataPath, JSON.stringify(baseData))
+    res.send(JSON.stringify({ success: true, code: 200, message: '删除成功' }))
   })
 })

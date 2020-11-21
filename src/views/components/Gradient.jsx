@@ -15,7 +15,7 @@ const gradient = () => {
 const Gradient = () => {
   const colors = useContext(DataContext).toDoList
   const { currentIndex } = useContext(DataContext)
-  console.log(currentIndex)
+  // console.log(currentIndex)
   return (
     <div style={gradient()}>
       {colors.map((item, i) => (
