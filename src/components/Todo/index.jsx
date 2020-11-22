@@ -13,7 +13,7 @@ function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
   return (
     <React.Fragment>
       <TasksContainer>
-        <h4>ToDoTaks</h4>
+        <h4>ToDoTasks</h4>
         <ul>
           {tasksList.map((task, i) => (
             <li key={task + i}>

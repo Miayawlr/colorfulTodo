@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { StyledDetails, Details } from './todostyle'
+import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
+import Button from 'components/Button'
 import { useHistory, useLocation } from 'react-router-dom'
 import { getTodoByName } from 'model/mine'
 import { useTransition, animated, useSpring } from 'react-spring'
@@ -18,6 +19,7 @@ const TodoDetails = ({ todoItem }) => {
   const [id, setId] = useState(null)
   const [delId, setDelId] = useState(null)
   const [doneStatus, setDoneStatus] = useState(null)
+  const [reqStatus, setReqStatus] = useState(false)
   const handleGoBack = () => {
     history.push('/')
   }
@@ -59,8 +61,9 @@ const TodoDetails = ({ todoItem }) => {
       setColors(res.colors)
     }
     getDetails()
-  }, [name, delId, doneStatus])
+  }, [name, delId, reqStatus])
   const handleChangeStatus = (status, id) => {
+    setReqStatus((pre) => !pre)
     setDoneStatus(status)
     setId(id)
   }
@@ -92,6 +95,15 @@ const TodoDetails = ({ todoItem }) => {
           srIcon={false}
           onRemove={(v) => handleRemoveTask(v)}
         ></Details>
+        <DetailsBtn bgColor={colors}>
+          <i
+            className={`fa fa-cube`}
+            style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
+          ></i>
+        </DetailsBtn>
+        {/* <DetailsBtn bgColor={colors[0]} shape={'rect'}>
+          111
+        </DetailsBtn> */}
       </animated.div>
     </StyledDetails>
   )

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Todo from 'components/Todo'
+import Button from 'components/Button'
 const StyledTodoContainer = styled.div`
   padding: 0.3rem ${({ theme }) => theme.layoutPadding}rem;
   height: 22.8rem;
@@ -29,7 +30,9 @@ const ToDo = styled(Todo)`
 `
 
 // 详情容器
-const StyledDetails = styled.div``
+const StyledDetails = styled.div`
+  /* position: relative; */
+`
 // 详情
 
 const Details = styled(Todo).attrs({ ShowTasks: true })`
@@ -39,5 +42,14 @@ const Details = styled(Todo).attrs({ ShowTasks: true })`
   } */
 `
 
+const DetailsBtn = styled(Button).attrs({ size: 2.6 })`
+  width: ${({ size }) => size}rem;
+  position: fixed;
+  right: 2rem;
+  top: 80vh;
+  z-index: 20;
+  color: #fff;
+`
+
 export default StyledTodoContainer
-export { ToDo, StyledDetails, Details }
+export { ToDo, StyledDetails, Details, DetailsBtn }

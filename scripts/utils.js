@@ -1,9 +1,3 @@
-const fs = require('fs-extra')
-const { get } = require('http')
-const path = require('path')
-const url = require('url')
-const dataPath = path.join(__dirname, '../data/data.json')
-
 const getFileAll = (file) => {
   const { data } = JSON.parse(file)
   const local_store = {}
@@ -27,16 +21,17 @@ const getListByName = (file, name = 'Work') => {
   })
   local_store[name].success = true
   local_store[name].code = 200
-  return Promise.resolve(local_store[name])
+  return local_store[name]
+  // return Promise.resolve(local_store[name])
 }
 // 获取单条数据
-const getData = async (file, name, id) => {
+const getData = (file, name, id) => {
   const dataId = Number(id)
-  const res = await getListByName(file, name)
+  const res = getListByName(file, name)
   const task = filterById(res, dataId)
   return task
 }
-// 获取代办条数
+// 获取待办条数
 const getTodoTaskNum = async (file) => {
   const res = await getFileAll(file)
   const countArr = []
@@ -50,8 +45,8 @@ const getTodoTaskNum = async (file) => {
 
 // 修改完成状态
 
-const changeTodoStatus = async (file, name, id, status) => {
-  const task = await getData(file, name, id)
+const changeTodoStatus = (file, name, id, status) => {
+  const task = getData(file, name, id)
   task[0].done = status
   return task
 }
