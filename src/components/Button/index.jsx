@@ -7,6 +7,7 @@ function Button({
   shape = 'circle',
   size = '2',
   bgColor = ['red', 'green'],
+  onClick,
   ...rest
 }) {
   return (
@@ -15,6 +16,13 @@ function Button({
       shape={shape}
       size={size}
       bgColor={bgColor}
+      onClick={
+        onClick
+          ? () => {
+              onClick()
+            }
+          : () => {}
+      }
       {...rest}
     >
       {children}
@@ -26,6 +34,7 @@ Button.propTypes = {
   children: PropTypes.any,
   type: PropTypes.oneOf(['primary']),
   shape: PropTypes.oneOf(['circle', 'rect']),
+  onClick: PropTypes.func,
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 

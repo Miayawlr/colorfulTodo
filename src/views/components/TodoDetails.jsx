@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
-import Button from 'components/Button'
 import { useHistory, useLocation } from 'react-router-dom'
 import { getTodoByName } from 'model/mine'
 import { useTransition, animated, useSpring } from 'react-spring'
@@ -81,7 +80,7 @@ const TodoDetails = ({ todoItem }) => {
             handleGoBack()
           }}
           color={'#666'}
-          title={'toDay'}
+          title={details.name}
           leftIcon={'chevron-left'}
           rightIcon={'ellipsis-v'}
         />
@@ -95,7 +94,7 @@ const TodoDetails = ({ todoItem }) => {
           srIcon={false}
           onRemove={(v) => handleRemoveTask(v)}
         ></Details>
-        <DetailsBtn bgColor={colors}>
+        <DetailsBtn bgColor={colors} onClick={() => console.log('doing')}>
           <i
             className={`fa fa-cube`}
             style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}

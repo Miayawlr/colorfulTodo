@@ -36,6 +36,9 @@ const StyledDetails = styled.div`
 // 详情
 
 const Details = styled(Todo).attrs({ ShowTasks: true })`
+  .todo-progress-line {
+    height: 0.15rem !important;
+  }
   /* .todo-header,
   .todo-body {
     transform: translate3d(0, 2rem, 0);

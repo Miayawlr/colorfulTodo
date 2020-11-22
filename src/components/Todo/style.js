@@ -66,7 +66,7 @@ const TodoBody = styled.section`
         height: 100%;
         border-radius: 1.5rem;
         display: block;
-        transition: all 0.3s ease;
+        transition: all 0.45s ease;
       }
     }
     .todo-progress-nums {

@@ -8,7 +8,6 @@ const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
   const handleOnChange = () => {
     setChecked(!checked)
     if (!onChange) return
-    // console.log(switchRef.current)
     onChange(!checked, id)
   }
 
@@ -26,7 +25,6 @@ const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
     </StyledSwitch>
   )
 }
-// / ${({ defaultValue }) => (defaultValue ? `${1.2}rem` : `${0}rem`)}
 
 function Task({
   onChange,
@@ -43,9 +41,7 @@ function Task({
       onRemove(id)
     }
   }
-  // console.log(id)
   return (
-    // initalChecked={initalChecked}
     <StyledTask {...rest}>
       <Switch
         color={color}
@@ -53,10 +49,13 @@ function Task({
         id={id}
         onChange={onChange}
       />
+
       <span className={'task-name'}>{title}</span>
-      <span className={'task-delete'} onClick={() => handleDelete(id)}>
-        <i className={'fa fa-trash'}></i>
-      </span>
+      {initalChecked && (
+        <span className={'task-delete'} onClick={() => handleDelete(id)}>
+          <i className={'fa fa-trash task-delete-icon'}></i>
+        </span>
+      )}
     </StyledTask>
   )
 }

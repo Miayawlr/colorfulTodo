@@ -20,8 +20,19 @@ const StyledTask = styled.div`
   }
   .task-delete {
     padding: 0 0.7rem;
-    color: #ccc;
+    /* color: #ccc; */
     font-size: 1.1rem;
+    animation: fade-in 0.55s ease;
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      color: #f5f5f5;
+    }
+    to {
+      opacity: 1;
+      color: #ccc;
+    }
   }
 `
 
