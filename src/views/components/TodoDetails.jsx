@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
-import { getTodoByName } from 'model/mine'
 import { useTransition, animated, useSpring } from 'react-spring'
-import { editorTodoStatus, delTodo } from 'model/mine'
+import { getTodoByName, editorTodoStatus, delTodo } from 'model/mine'
 const useQuery = () => new URLSearchParams(useLocation().search)
 
 const TodoDetails = ({ todoItem }) => {
@@ -31,12 +30,12 @@ const TodoDetails = ({ todoItem }) => {
   useEffect(() => {
     if (id !== null) {
       const editorStatus = async () => {
-        let parmas = {
+        let params = {
           id,
           name,
           status: doneStatus,
         }
-        await editorTodoStatus(JSON.stringify(parmas))
+        await editorTodoStatus(JSON.stringify(params))
       }
       editorStatus()
     }
@@ -45,11 +44,11 @@ const TodoDetails = ({ todoItem }) => {
   useEffect(() => {
     if (delId !== null) {
       const delDetailsTodo = async () => {
-        let parmas = {
+        let params = {
           id: delId,
           name,
         }
-        const res = await delTodo(JSON.stringify(parmas))
+        const res = await delTodo(JSON.stringify(params))
         console.log(res)
       }
       delDetailsTodo()

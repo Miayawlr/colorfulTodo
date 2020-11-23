@@ -1,5 +1,4 @@
 const url = require('url')
-const queryString = require('querystring')
 const G = {}
 G._get = {}
 G._post = {}
@@ -24,6 +23,7 @@ const app = (req, res) => {
   const method = req.method.toLowerCase()
   console.log(method)
   // [pathName]
+  console.log(pathName)
   if (G[`_${method}`][pathName]) {
     if (method === 'get') {
       G._get[pathName](req, res)

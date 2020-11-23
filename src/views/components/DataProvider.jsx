@@ -23,7 +23,6 @@ const reducer = (state, action) => {
 const Data = ({ children }) => {
   const [toDoList, setToDoList] = useState([])
   const [currentIndex, dispatch] = useReducer(reducer, defaultIndex)
-
   const todoListCallback = useCallback(() => {
     const doThingList = async () => {
       try {
@@ -36,6 +35,7 @@ const Data = ({ children }) => {
     }
     return doThingList()
   }, [])
+
   useEffect(() => {
     todoListCallback()
   }, [todoListCallback])

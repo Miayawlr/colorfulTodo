@@ -6,7 +6,7 @@ function Button({
   type = 'primary',
   shape = 'circle',
   size = '2',
-  bgColor = ['red', 'green'],
+  bgColor = ['#5b9df9', '#5b9df9'],
   onClick,
   ...rest
 }) {

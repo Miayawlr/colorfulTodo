@@ -37,3 +37,12 @@ export const delTodo = (data) => {
     data,
   })
 }
+
+// 增加
+export const putTodo = (data) => {
+  return instance({
+    url: '/putToDo',
+    method: 'post',
+    data,
+  })
+}

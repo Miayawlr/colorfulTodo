@@ -18,10 +18,8 @@ app.get('/getMessage', (req, res) => {
 })
 
 app.get('/getByName', (req, res) => {
-  console.log('byName redoce')
   const _url = req.url
   const data = fs.readFileSync(dataPath, 'utf-8')
-  console.log(data)
   const name = url.parse(_url).query.split('=')[1]
   const result = utils.getListByName(data, name)
   res.send(JSON.stringify(result))
@@ -44,7 +42,6 @@ app.post('/editorToDoStatus', (req, res) => {
   const { status } = params
   const baseData = JSON.parse(data)
   const result = utils.changeTodoStatus(data, name, id, status)
-  console.log(result)
   for (let key in baseData.data) {
     if (baseData.data[key].name === name) {
       const arr = baseData.data[key].tasks
@@ -84,4 +81,32 @@ app.post('/delToDo', (req, res) => {
   }
   fs.writeFileSync(dataPath, JSON.stringify(baseData))
   res.send(JSON.stringify({ success: true, code: 200, message: '删除成功' }))
+})
+
+// 新增todo项
+app.post('/putToDo', (req, res) => {
+  const data = fs.readFileSync(dataPath, 'utf-8')
+  const params = JSON.parse(req.body)
+  const { name } = params
+  const { menu } = params
+  const id = Math.floor(Math.random() * (100 - 1)) + 1
+  console.log(id)
+  const baseData = JSON.parse(data)
+  const datas = baseData.data
+  const v = datas.filter((item) => item.name === name)[0]['tasks']
+  const todoItem = {
+    id,
+    title: menu,
+    date: new Date(),
+    done: false,
+    deleted: false,
+  }
+  v.push(todoItem)
+  for (let key in datas) {
+    if (datas[key]['name'] === name) {
+      datas[key]['tasks'] = v
+    }
+  }
+  fs.writeFileSync(dataPath, JSON.stringify(baseData))
+  res.send(JSON.stringify({ success: true, code: 200, message: '创建成功' }))
 })
