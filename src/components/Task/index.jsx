@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import StyledTask, { StyledSwitch, CheckBox, Slider } from './style'
-
+import { useSpring, animated } from 'react-spring'
 const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
   const [checked, setChecked] = useState(initalChecked)
   const switchRef = useRef(null)
@@ -35,6 +35,10 @@ function Task({
   id,
   ...rest
 }) {
+  const opacityT = useSpring({
+    opacity: initalChecked ? 1 : 0,
+    transition: 'all 1s ease',
+  })
   const [cheked, setChecked] = useState(false)
   const handleDelete = (id) => {
     if (onRemove) {

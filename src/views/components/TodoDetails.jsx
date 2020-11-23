@@ -19,8 +19,12 @@ const TodoDetails = ({ todoItem }) => {
   const [delId, setDelId] = useState(null)
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
+  // router push
   const handleGoBack = () => {
     history.push('/')
+  }
+  const handlePushEdiotr = () => {
+    history.push(`/editor?index=${index}&name=${name}`)
   }
 
   // 编辑
@@ -69,6 +73,7 @@ const TodoDetails = ({ todoItem }) => {
   const handleRemoveTask = (id) => {
     setDelId(id)
   }
+
   const transitions = useTransition(3, {
     transform: 'all 0.5s ease',
   })
@@ -94,7 +99,7 @@ const TodoDetails = ({ todoItem }) => {
           srIcon={false}
           onRemove={(v) => handleRemoveTask(v)}
         ></Details>
-        <DetailsBtn bgColor={colors} onClick={() => console.log('doing')}>
+        <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
           <i
             className={`fa fa-cube`}
             style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}

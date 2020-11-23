@@ -8,6 +8,7 @@ import TodoDetails from './components/TodoDetails'
 import './layout.css'
 import { Data } from './components/DataProvider'
 import { useTransition, animated, useSpring } from 'react-spring'
+import TodoEditor from './components/TodoEditing'
 const Layout = () => {
   // const transitions = useTransition(null, {
   //   from: { transform: 'translate3d(0,-100vh,0)' },
@@ -21,23 +22,26 @@ const Layout = () => {
   return (
     <Router>
       <div className={'layout'}>
-        <Route path={'/'} exact>
-          <animated.div>
-            <Data>
+        <Data>
+          <Route path={'/'} exact>
+            <animated.div>
               <HeaderBar />
               <Summary />
               <Gradient></Gradient>
               <TodoList />
-            </Data>
-          </animated.div>
-        </Route>
-        <Switch>
-          <Route sensitive path={'/details'}>
-            <animated.div style={opactiyT}>
-              <TodoDetails />
             </animated.div>
           </Route>
-        </Switch>
+          <Switch>
+            <Route sensitive path={'/details'}>
+              <animated.div style={opactiyT}>
+                <TodoDetails />
+              </animated.div>
+            </Route>
+            <Route sensitive path={'/editor'}>
+              <TodoEditor />
+            </Route>
+          </Switch>
+        </Data>
       </div>
     </Router>
   )

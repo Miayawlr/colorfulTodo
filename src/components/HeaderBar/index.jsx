@@ -6,7 +6,7 @@ function HeaderBar({
   leftIcon = 'bars',
   rightIcon = 'search',
   srIcon = true,
-  color = '',
+  color = '#666',
   onBack,
   ...rest
 }) {
@@ -20,7 +20,7 @@ function HeaderBar({
       <span className={'app-bar_l'} onClick={() => handleGoBack()}>
         <i className={`fa fa-${leftIcon}`}></i>
       </span>
-      <h1> {title}</h1>
+      <h1>{title}</h1>
       {srIcon && (
         <span className={'app-bar_r'}>
           <i className={`fa fa-${rightIcon}`}></i>
