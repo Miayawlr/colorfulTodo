@@ -17,7 +17,6 @@ const getDateString = (date) => {
 const Summary = () => {
   const [date, setDate] = useState(null)
   const [count, setCount] = useState(null)
-  const [ava, setAva] = useState(null)
   useEffect(() => {
     const time = new Date()
     setDate(time.toISOString())

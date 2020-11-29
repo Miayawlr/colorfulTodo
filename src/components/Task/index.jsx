@@ -39,7 +39,6 @@ function Task({
     opacity: initalChecked ? 1 : 0,
     transition: 'all 1s ease',
   })
-  const [cheked, setChecked] = useState(false)
   const handleDelete = (id) => {
     if (onRemove) {
       onRemove(id)
