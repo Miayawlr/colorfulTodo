@@ -7,7 +7,15 @@
 这是[项目地址](https://github.com/Miayawlr/colorfulTodo)的源码。
 你也可以使用此项目自己 DIY 学习。
 
-🌸 二期开工~
+```shell
+# 安装依赖
+npm install / yarn add
+
+# 先运行服务！！！
+yarn server / npm run server
+#启动项目
+yarn start /npm run start
+```
 
 <br/>
 

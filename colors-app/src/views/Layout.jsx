@@ -11,17 +11,32 @@ const Layout = () => {
   //   // leave: { transition: 'all 0.5s ease' },
   // })
   const opactiyT = useSpring({
+    from: { opacity: 0.3, transition: 'all .5s ease' },
+    to: { opacity: 1 },
+  })
+  const [routerList, setRouterList] = useState(baseRouter)
+  const transaitionsT = useTransition(routerList, (router) => router.key, {
     from: { opacity: 0.3, transition: 'all 1s ease' },
     to: { opacity: 1 },
   })
-  // const [routerList, setRouterList] = useState([1, 2, 3])
-  // const transaitionsT = useTransition(routerList, (router) => router.key, {})
   return (
     <Router>
       <div className={'layout'}>
         <Data>
           <Switch>
-            {baseRouter.map((route, i) => (
+            {/* {baseRouter.map((route, i) => (
+              <Route
+                key={route + i}
+                path={route.path}
+                exact={i === 0}
+                sensitive={i !== 0}
+              >
+                <animated.div style={opactiyT}>
+                  <route.component />
+                </animated.div>
+              </Route>
+            ))} */}
+            {routerList.map((route, i) => (
               <Route
                 key={route + i}
                 path={route.path}
