@@ -6,6 +6,7 @@ const GradientActive = (active) => {
   if (active) {
     return { opacity: 1 }
   }
+  return { opacity: 0 }
 }
 
 function GradientColor({

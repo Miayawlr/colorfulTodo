@@ -1,14 +1,9 @@
-import React from 'react'
-import HeaderBar from 'components/HeaderBar'
-import Summary from './components/Summary'
-import TodoList from './components/TodoList'
-import Gradient from './components/Gradient'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import TodoDetails from './components/TodoDetails'
 import './layout.css'
 import { Data } from './components/DataProvider'
 import { useTransition, animated, useSpring } from 'react-spring'
-import TodoEditor from './components/TodoEditing'
+import { baseRouter } from 'routes/config'
 const Layout = () => {
   // const transitions = useTransition(null, {
   //   from: { transform: 'translate3d(0,-100vh,0)' },
@@ -16,6 +11,11 @@ const Layout = () => {
   //   // leave: { transition: 'all 0.5s ease' },
   // })
   const opactiyT = useSpring({
+    from: { opacity: 0.3, transition: 'all .5s ease' },
+    to: { opacity: 1 },
+  })
+  const [routerList, setRouterList] = useState(baseRouter)
+  const transaitionsT = useTransition(routerList, (router) => router.key, {
     from: { opacity: 0.3, transition: 'all 1s ease' },
     to: { opacity: 1 },
   })
@@ -23,23 +23,31 @@ const Layout = () => {
     <Router>
       <div className={'layout'}>
         <Data>
-          <Route path={'/'} exact>
-            <animated.div>
-              <HeaderBar />
-              <Summary />
-              <Gradient></Gradient>
-              <TodoList />
-            </animated.div>
-          </Route>
           <Switch>
-            <Route sensitive path={'/details'}>
-              <animated.div style={opactiyT}>
-                <TodoDetails />
-              </animated.div>
-            </Route>
-            <Route sensitive path={'/editor'}>
-              <TodoEditor />
-            </Route>
+            {/* {baseRouter.map((route, i) => (
+              <Route
+                key={route + i}
+                path={route.path}
+                exact={i === 0}
+                sensitive={i !== 0}
+              >
+                <animated.div style={opactiyT}>
+                  <route.component />
+                </animated.div>
+              </Route>
+            ))} */}
+            {routerList.map((route, i) => (
+              <Route
+                key={route + i}
+                path={route.path}
+                exact={i === 0}
+                sensitive={i !== 0}
+              >
+                <animated.div style={opactiyT}>
+                  <route.component />
+                </animated.div>
+              </Route>
+            ))}
           </Switch>
         </Data>
       </div>

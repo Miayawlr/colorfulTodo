@@ -88,26 +88,23 @@ const TodoDetails = ({ todoItem }) => {
           leftIcon={'chevron-left'}
           rightIcon={'ellipsis-v'}
         />
-        <Details
-          onChange={(status, id) => handleChangeStatus(status, id)}
-          style={{ boxShadow: 'none' }}
-          todoIcon={details.icon}
-          todoIconColor={colors[0]}
-          title={details.name}
-          tasks={taskList}
-          srIcon={false}
-          onRemove={(v) => handleRemoveTask(v)}
-        ></Details>
-        <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
-          <i
-            className={`fa fa-cube`}
-            style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
-          ></i>
-        </DetailsBtn>
-        {/* <DetailsBtn bgColor={colors[0]} shape={'rect'}>
-          111
-        </DetailsBtn> */}
       </animated.div>
+      <Details
+        onChange={(status, id) => handleChangeStatus(status, id)}
+        style={{ boxShadow: 'none' }}
+        todoIcon={details.icon}
+        todoIconColor={colors[0]}
+        title={details.name}
+        tasks={taskList}
+        srIcon={false}
+        onRemove={(v) => handleRemoveTask(v)}
+      ></Details>
+      <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
+        <i
+          className={`fa fa-cube`}
+          style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
+        ></i>
+      </DetailsBtn>
     </StyledDetails>
   )
 }
