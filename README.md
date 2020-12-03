@@ -18,6 +18,9 @@ yarn server / npm run server
 yarn start /npm run start
 ```
 
+scripts 目录存放着 node 服务。
+src 下是前端项目。
+
 <br/>
 
 ### 协议
