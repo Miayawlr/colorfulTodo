@@ -38,11 +38,11 @@ function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
 function Todo({
   toDo = {},
   children,
-  todoIcon = 'user',
+  todoIcon = '',
   todoIconColor = 'red',
   selected = false,
   tasks = [],
-  title = '测试',
+  title = '',
   ShowTasks = false,
   onRemove,
   onChange,
@@ -55,7 +55,7 @@ function Todo({
     const totalCount = tasks.filter((t) => !t.deleted).length
     const doneCount = tasks.filter((t) => !t.deleted && t.done).length
     const precentage = Math.round((doneCount / totalCount) * 100)
-    setPre(precentage)
+    setPre(precentage || 0)
   }, [tasks])
   return (
     <StyledTodo selected={selected} {...rest}>
@@ -82,6 +82,7 @@ function Todo({
           </span>
           <span className={'todo-progress-nums'}>{pre}%</span>
         </div>
+
         {ShowTasks && (
           <TodoTasks
             tasksList={tasks}

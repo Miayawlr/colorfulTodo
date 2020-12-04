@@ -4,6 +4,7 @@ import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTransition, animated, useSpring } from 'react-spring'
 import { getTodoByName, editorTodoStatus, delTodo } from 'model/mine'
+
 const useQuery = () => new URLSearchParams(useLocation().search)
 
 const TodoDetails = ({ todoItem }) => {
@@ -64,6 +65,7 @@ const TodoDetails = ({ todoItem }) => {
     }
     getDetails()
   }, [name, delId, reqStatus])
+  console.log(details)
   const handleChangeStatus = (status, id) => {
     setReqStatus((pre) => !pre)
     setDoneStatus(status)

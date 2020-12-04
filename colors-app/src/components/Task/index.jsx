@@ -29,7 +29,7 @@ const Switch = ({ onChange, initalChecked = false, color = '#ff6262', id }) => {
 function Task({
   onChange,
   initalChecked = false,
-  color,
+  color = 'red',
   onRemove,
   title,
   id,

@@ -1,11 +1,31 @@
 import Koa from 'koa'
-const app:Koa =new Koa()
+import { config } from './config'
+import Router from 'koa-router' //路由中间件
+import user from './routes/api/user' //api/user
 
-app.use(async(ctx:Koa.DefaultContext)=>{ctx.body='hello koa2'})
+import bodyParser from 'koa-bodyparser'
+const app: Koa = new Koa()
+const router: Router = new Router()
 
-const port:number =8124
+// 设置服务端时间戳
+app.use(async (ctx, next) => {
+  const start: number = new Date().getTime()
+  await next()
+  ctx.set('X-Response-Time', start.toString())
+})
 
-app.listen(port,()=>{
+// 设置body请求接收
+app.use(bodyParser())
+
+// api router层
+router.use('/miayaTodo/api/user', user.routes())
+
+app.use(router.routes()).use(router.allowedMethods())
+
+const { port }: { port: number } = config
+
+// 监听端口
+app.listen(port, () => {
   console.log(`seccess start server`)
   console.log(`local: http://127.0.0.1:${port}`)
 })
