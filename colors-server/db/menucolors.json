@@ -1,0 +1,36 @@
+{
+  "_id": {
+    "$oid": "5fcd9040432d0a5bec4882d2"
+  },
+  "id": "1",
+  "icon": "user",
+  "name": "Personal",
+  "colors": [
+    "#ff6262",
+    "#ffa947"
+  ]
+}
+{
+  "_id": {
+    "$oid": "5fcd9040432d0a5bec4882d3"
+  },
+  "id": "2",
+  "icon": "suitcase",
+  "name": "Work",
+  "colors": [
+    "#5b9df9",
+    "#47bfff"
+  ]
+}
+{
+  "_id": {
+    "$oid": "5fcd9040432d0a5bec4882d4"
+  },
+  "id": "3",
+  "icon": "home",
+  "name": "Home",
+  "colors": [
+    "#2c7d59",
+    "#3ba776"
+  ]
+}

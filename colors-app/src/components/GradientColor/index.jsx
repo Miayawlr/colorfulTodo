@@ -3,10 +3,7 @@ import PropTypes from 'prop-types'
 import StyledGradientColor from './style'
 
 const GradientActive = (active) => {
-  if (active) {
-    return { opacity: 1 }
-  }
-  return { opacity: 0 }
+  return active ? { opacity: 1 } : { opacity: 0 }
 }
 
 function GradientColor({
