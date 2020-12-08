@@ -1,10 +1,12 @@
 import * as Koa from 'koa'
-
+import personal from '../model/personal'
 class UserController {
   // 获取所有tood项
   async getMenuList(ctx: Koa.Context, next: any): Promise<void> {
     const boyds = 'menuList'
-    await next()
+    const val = await personal.find({})
+    console.log(val)
+    // await next()
     ctx.body = boyds
   }
   // todo页
@@ -29,6 +31,7 @@ class UserController {
   async addMenuItem(ctx: Koa.Context, next: any): Promise<void> {
     const postData = ctx.request.body
     await next()
+    console.log(postData + 'post')
     ctx.body = postData
   }
 }

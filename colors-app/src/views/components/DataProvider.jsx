@@ -5,7 +5,8 @@ import React, {
   createContext,
   useReducer,
 } from 'react'
-import { getTodoList } from 'model/mine'
+// import { getTodoList } from 'model/mine'
+import { getMenuList, addItem } from 'model/mine'
 const DataContext = createContext({})
 const NEXT = 'NEXT'
 const PRE = 'PRE'
@@ -26,7 +27,7 @@ const Data = ({ children }) => {
   const todoListCallback = useCallback(() => {
     const doThingList = async () => {
       try {
-        const res = await getTodoList()
+        const res = await getMenuList()
         setToDoList(res.data)
         console.log(res.data)
       } catch (error) {
@@ -39,6 +40,14 @@ const Data = ({ children }) => {
   useEffect(() => {
     todoListCallback()
   }, [todoListCallback])
+  useEffect(() => {
+    const test = async () => {
+      let parmas = 'abc'
+      const res = await addItem({ namme: 3 })
+      console.log(res)
+    }
+    test()
+  }, [])
   return (
     <DataContext.Provider value={{ toDoList, currentIndex, dispatch }}>
       {children}

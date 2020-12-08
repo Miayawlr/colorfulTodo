@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StyledSummary, { SummaryAvatar } from './style'
-import { getTodoNumCount } from 'model/mine'
+// import { getTodoNumCount } from 'model/mine'
 const options = {
   weekday: 'short',
   year: 'numeric',
@@ -22,12 +22,12 @@ const Summary = () => {
     setDate(time.toISOString())
   }, [])
   useEffect(() => {
-    const getCount = async () => {
-      const res = await getTodoNumCount()
-      setCount(res.count)
-      console.log(res)
-    }
-    getCount()
+    // const getCount = async () => {
+    //   const res = await getTodoNumCount()
+    //   setCount(res.count)
+    //   console.log(res)
+    // }
+    // getCount()
   }, [])
 
   // console.log(count)

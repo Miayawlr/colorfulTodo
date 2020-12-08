@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:8124',
+  baseURL: 'http://127.0.0.1:9000/miayaTodo/api/v2',
   timeout: 9999,
 })
 // requeset interceptor
-// instance.defaults.headers['Content-Type'] = 'application/json'
+instance.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 instance.interceptors.request.use(
   (config) => {
     // config.headers = {

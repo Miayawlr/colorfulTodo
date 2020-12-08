@@ -3,7 +3,7 @@ import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTransition, animated, useSpring } from 'react-spring'
-import { getTodoByName, editorTodoStatus, delTodo } from 'model/mine'
+// import { getTodoByName, editorTodoStatus, delTodo } from 'model/mine'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -30,40 +30,40 @@ const TodoDetails = ({ todoItem }) => {
   // 编辑
   useEffect(() => {
     if (id !== null) {
-      const editorStatus = async () => {
-        let params = {
-          id,
-          name,
-          status: doneStatus,
-        }
-        await editorTodoStatus(JSON.stringify(params))
-      }
-      editorStatus()
+      // const editorStatus = async () => {
+      //   let params = {
+      //     id,
+      //     name,
+      //     status: doneStatus,
+      //   }
+      //   await editorTodoStatus(JSON.stringify(params))
+      // }
+      // editorStatus()
     }
   }, [doneStatus, id, name])
   // 删除
   useEffect(() => {
     if (delId !== null) {
-      const delDetailsTodo = async () => {
-        let params = {
-          id: delId,
-          name,
-        }
-        const res = await delTodo(JSON.stringify(params))
-        console.log(res)
-      }
-      delDetailsTodo()
+      // const delDetailsTodo = async () => {
+      //   let params = {
+      //     id: delId,
+      //     name,
+      //   }
+      //   const res = await delTodo(JSON.stringify(params))
+      //   console.log(res)
+      // }
+      // delDetailsTodo()
     }
   }, [delId, name])
   // 获取详情
   useEffect(() => {
-    const getDetails = async () => {
-      const res = await getTodoByName(name)
-      setTaskList(res.tasks)
-      setDetails({ ...res })
-      setColors(res.colors)
-    }
-    getDetails()
+    // const getDetails = async () => {
+    //   const res = await getTodoByName(name)
+    //   setTaskList(res.tasks)
+    //   setDetails({ ...res })
+    //   setColors(res.colors)
+    // }
+    // getDetails()
   }, [name, delId, reqStatus])
   console.log(details)
   const handleChangeStatus = (status, id) => {
