@@ -29,7 +29,7 @@ const Data = ({ children }) => {
       try {
         const res = await getMenuList()
         setToDoList(res.data)
-        console.log(res.data)
+        console.log(res)
       } catch (error) {
         console.log(error)
       }

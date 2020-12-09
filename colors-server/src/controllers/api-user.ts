@@ -16,12 +16,20 @@ class UserController {
     const homedata = await home.find({})
     const colorsdata = await menuColors.find({})
 
-    let val = [...colorsdata].map((item, i) => item)
-
-    // console.log(val)
     await next()
-
-    ctx.body = JSON.stringify(val[0])
+    if ((ctx.status = 200)) {
+      ctx.body = {
+        code: 200,
+        msg: '请求成功',
+        data: colorsdata,
+      }
+    } else {
+      ctx.body = {
+        code: ctx.status,
+        data: [],
+        msg: 'error',
+      }
+    }
   }
   // todo页
   async getMenuByName(ctx: Koa.Context, next: any): Promise<void> {

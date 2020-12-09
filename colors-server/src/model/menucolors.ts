@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const MenuColorsSchema = new Schema({
-  id: String,
+  todo_id: String,
   icon: String,
   name: String,
   colors: Array,
