@@ -1,16 +1,16 @@
-// import { config } from './../config'
-// import mongoose from 'mongoose'
-// const dbUrl: string = config.db
+import { config } from './../config'
+import mongoose from 'mongoose'
+const dbUrl: string = config.db
 
-// mongoose.connect(dbUrl, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// })
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
-// const db = mongoose.connection
-// db.on('error', console.error.bind(console, 'connection error:'))
-// db.once('open', function () {
-//   console.log('success ')
-// })
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', function () {
+  console.log('success ')
+})
 
-// export default db
+export default db

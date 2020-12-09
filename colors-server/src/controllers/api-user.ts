@@ -1,13 +1,27 @@
 import * as Koa from 'koa'
 import personal from '../model/personal'
+import work from '../model/work'
+import home from '../model/home'
+import menuColors from '../model/menucolors'
+
+interface listMenu {
+  [propName: string]: any
+}
+
 class UserController {
   // 获取所有tood项
   async getMenuList(ctx: Koa.Context, next: any): Promise<void> {
-    const boyds = 'menuList'
-    const val = await personal.find({})
-    console.log(val)
-    // await next()
-    ctx.body = boyds
+    const persondata = await personal.find({})
+    const workdata = await work.find({})
+    const homedata = await home.find({})
+    const colorsdata = await menuColors.find({})
+
+    let val = [...colorsdata].map((item, i) => item)
+
+    // console.log(val)
+    await next()
+
+    ctx.body = JSON.stringify(val[0])
   }
   // todo页
   async getMenuByName(ctx: Koa.Context, next: any): Promise<void> {

@@ -2,23 +2,11 @@ import Koa from 'koa'
 import { config } from './config'
 import Router from 'koa-router' //路由中间件
 import api from './routes/api' //api/user
-// import db from './services/mongo'
-import mongoose from 'mongoose'
+import db from './services/mongo'
 import bodyParser from 'koa-bodyparser'
 const app: Koa = new Koa()
 const router: Router = new Router()
-
-const dbUrl: string = config.db
-
-mongoose.connect(dbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function () {
-  console.log('success ')
-})
+db
 // 设置服务端请求
 app.use(async (ctx: Koa.Context, next) => {
   const start: number = new Date().getTime()
