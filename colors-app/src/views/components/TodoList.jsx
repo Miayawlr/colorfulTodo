@@ -36,16 +36,6 @@ const TodoList = () => {
       }
     }
   }
-
-  // // animation
-  // const transitions = useTransition(val, (item) => item.key, {
-  //   from: { transition: 'all 0.5s ease' },
-  //   enter: { transition: 'all 0.5s ease' },
-  //   leave: { transition: 'all 0.5s ease' },
-  // })
-  const transitions = useTransition(3, {
-    transform: 'all 0.5s ease',
-  })
   return (
     <React.Fragment>
       <StyledTodoContainer

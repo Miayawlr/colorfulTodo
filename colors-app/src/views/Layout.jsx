@@ -5,11 +5,6 @@ import { Data } from './components/DataProvider'
 import { useTransition, animated, useSpring } from 'react-spring'
 import { baseRouter } from 'routes/config'
 const Layout = () => {
-  // const transitions = useTransition(null, {
-  //   from: { transform: 'translate3d(0,-100vh,0)' },
-  //   // enter: { transition: 'all 0.5s ease' },
-  //   // leave: { transition: 'all 0.5s ease' },
-  // })
   const opactiyT = useSpring({
     from: { opacity: 0.3, transition: 'all .5s ease' },
     to: { opacity: 1 },
@@ -24,18 +19,6 @@ const Layout = () => {
       <div className={'layout'}>
         <Data>
           <Switch>
-            {/* {baseRouter.map((route, i) => (
-              <Route
-                key={route + i}
-                path={route.path}
-                exact={i === 0}
-                sensitive={i !== 0}
-              >
-                <animated.div style={opactiyT}>
-                  <route.component />
-                </animated.div>
-              </Route>
-            ))} */}
             {routerList.map((route, i) => (
               <Route
                 key={route + i}

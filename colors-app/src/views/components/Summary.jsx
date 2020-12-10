@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import StyledSummary, { SummaryAvatar } from './style'
-// import { getTodoNumCount } from 'model/mine'
+import { DataContext } from 'views/components/DataProvider'
 const options = {
   weekday: 'short',
   year: 'numeric',
@@ -14,23 +14,15 @@ const getDateString = (date) => {
     .toLocaleDateString('zh-cn', options)
     .replace('日', '日, &nbsp;')
 }
+
 const Summary = () => {
+  const { count } = useContext(DataContext)
   const [date, setDate] = useState(null)
-  const [count, setCount] = useState(null)
+  // const [count, setCount] = useState(null)
   useEffect(() => {
     const time = new Date()
     setDate(time.toISOString())
   }, [])
-  useEffect(() => {
-    // const getCount = async () => {
-    //   const res = await getTodoNumCount()
-    //   setCount(res.count)
-    //   console.log(res)
-    // }
-    // getCount()
-  }, [])
-
-  // console.log(count)
   return (
     <StyledSummary>
       {/* <Avatar /> */}

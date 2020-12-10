@@ -3,7 +3,7 @@ import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTransition, animated, useSpring } from 'react-spring'
-// import { getTodoByName, editorTodoStatus, delTodo } from 'model/mine'
+import { getMenuByName, editorStatus, delItem } from 'model/mine'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -19,6 +19,7 @@ const TodoDetails = ({ todoItem }) => {
   const [delId, setDelId] = useState(null)
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
+  const [delStatus, setDelStatus] = useState(false)
   // router push
   const handleGoBack = () => {
     history.push('/')
@@ -30,44 +31,44 @@ const TodoDetails = ({ todoItem }) => {
   // 编辑
   useEffect(() => {
     if (id !== null) {
-      // const editorStatus = async () => {
-      //   let params = {
-      //     id,
-      //     name,
-      //     status: doneStatus,
-      //   }
-      //   await editorTodoStatus(JSON.stringify(params))
-      // }
-      // editorStatus()
+      const editorToDoStatus = async () => {
+        let params = {
+          id,
+          name,
+          status: doneStatus,
+        }
+        await editorStatus(params)
+        await setReqStatus((pre) => !pre)
+      }
+      editorToDoStatus()
     }
   }, [doneStatus, id, name])
   // 删除
   useEffect(() => {
     if (delId !== null) {
-      // const delDetailsTodo = async () => {
-      //   let params = {
-      //     id: delId,
-      //     name,
-      //   }
-      //   const res = await delTodo(JSON.stringify(params))
-      //   console.log(res)
-      // }
-      // delDetailsTodo()
+      const delDetailsTodo = async () => {
+        let params = {
+          id: delId,
+          name,
+        }
+        const res = await delItem(params)
+        await setDelStatus((pre) => !pre)
+        console.log(res)
+      }
+      delDetailsTodo()
     }
   }, [delId, name])
   // 获取详情
   useEffect(() => {
-    // const getDetails = async () => {
-    //   const res = await getTodoByName(name)
-    //   setTaskList(res.tasks)
-    //   setDetails({ ...res })
-    //   setColors(res.colors)
-    // }
-    // getDetails()
-  }, [name, delId, reqStatus])
-  console.log(details)
+    const getDetails = async () => {
+      const res = await getMenuByName(name)
+      setTaskList(res.data[0].tasks)
+      setColors(res.data[0].colors)
+      setDetails({ ...res.data[0] })
+    }
+    getDetails()
+  }, [name, delStatus, reqStatus])
   const handleChangeStatus = (status, id) => {
-    setReqStatus((pre) => !pre)
     setDoneStatus(status)
     setId(id)
   }
@@ -80,17 +81,16 @@ const TodoDetails = ({ todoItem }) => {
   })
   return (
     <StyledDetails>
-      <animated.div key={index} style={transitions[index]}>
-        <HeaderBar
-          onBack={() => {
-            handleGoBack()
-          }}
-          color={'#666'}
-          title={details.name}
-          leftIcon={'chevron-left'}
-          rightIcon={'ellipsis-v'}
-        />
-      </animated.div>
+      {/* <animated.div key={index} style={transitions[index]}></animated.div> */}
+      <HeaderBar
+        onBack={() => {
+          handleGoBack()
+        }}
+        color={'#666'}
+        title={details.name}
+        leftIcon={'chevron-left'}
+        rightIcon={'ellipsis-v'}
+      />
       <Details
         onChange={(status, id) => handleChangeStatus(status, id)}
         style={{ boxShadow: 'none' }}

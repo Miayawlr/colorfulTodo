@@ -9,7 +9,6 @@ function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
       return { borderBottom: 0 }
     }
   }
-  // console.log(tasksList)
   return (
     <React.Fragment>
       <TasksContainer>
