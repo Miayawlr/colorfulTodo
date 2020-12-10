@@ -10,6 +10,7 @@ const DataContext = createContext({})
 const NEXT = 'NEXT'
 const PRE = 'PRE'
 const defaultIndex = 0 //初始index
+const reFetchStatus = false
 const reducer = (state, action) => {
   switch (action.type) {
     case 'NEXT':
@@ -20,17 +21,23 @@ const reducer = (state, action) => {
       break
   }
 }
+const reFetchReducer = (state, action) => {
+  // console.log(action)
+  return action
+}
+console.log(reFetchStatus)
 const Data = ({ children }) => {
   const [toDoList, setToDoList] = useState([])
   const [count, setCount] = useState(0)
   const [currentIndex, dispatch] = useReducer(reducer, defaultIndex)
+  const [reFetch, dispatchFecth] = useReducer(reFetchReducer, reFetchStatus)
   const todoListCallback = useCallback(() => {
     const doThingList = async () => {
       try {
         const res = await getMenuList()
         setToDoList(res.data)
         setCount(res.task_num)
-        console.log(res.data)
+        console.log(res)
       } catch (error) {
         console.log(error)
       }
@@ -40,9 +47,18 @@ const Data = ({ children }) => {
 
   useEffect(() => {
     todoListCallback()
-  }, [todoListCallback])
+  }, [todoListCallback, reFetch])
   return (
-    <DataContext.Provider value={{ toDoList, count, currentIndex, dispatch }}>
+    <DataContext.Provider
+      value={{
+        toDoList,
+        count,
+        currentIndex,
+        reFetch,
+        dispatch,
+        dispatchFecth,
+      }}
+    >
       {children}
     </DataContext.Provider>
   )

@@ -56,6 +56,7 @@ const TodoList = () => {
                 to={{
                   pathname: '/details',
                   search: `?index=${i}&name=${item.name}`,
+                  params: true,
                 }}
               >
                 <ToDo

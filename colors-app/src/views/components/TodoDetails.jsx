@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTransition, animated, useSpring } from 'react-spring'
 import { getMenuByName, editorStatus, delItem } from 'model/mine'
-
+import { DataContext } from 'views/components/DataProvider'
 const useQuery = () => new URLSearchParams(useLocation().search)
 
 const TodoDetails = ({ todoItem }) => {
@@ -20,9 +20,12 @@ const TodoDetails = ({ todoItem }) => {
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
   const [delStatus, setDelStatus] = useState(false)
+  const { reFetch } = useContext(DataContext)
+  const { dispatchFecth } = useContext(DataContext)
   // router push
   const handleGoBack = () => {
-    history.push('/')
+    dispatchFecth(!reFetch)
+    history.goBack(-1)
   }
   const handlePushEdiotr = () => {
     history.push(`/editor?index=${index}&name=${name}`)
@@ -65,7 +68,6 @@ const TodoDetails = ({ todoItem }) => {
       setTaskList(res.data[0].tasks)
       setColors(res.data[0].colors)
       setDetails({ ...res.data[0] })
-      console.log('hhh')
     }
     getDetails()
   }, [name, delStatus, reqStatus])
