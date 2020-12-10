@@ -116,9 +116,29 @@ class UserController {
   // 新增待办事项
   async addMenuItem(ctx: Koa.Context, next: any): Promise<void> {
     const postData = ctx.request.body
-    await next()
-    console.log(postData + 'post')
+    const toDoIdSelect: any = {
+      Personal: '1',
+      Work: '2',
+      Home: '3',
+    }
+    const { name } = postData
+    const title = postData.menu
+    const doDoName = toDoIdSelect[name]
+    const id = Math.floor(Math.random() * (100 - 1)) + 1
+    const todoData = new menu({
+      todo_id: doDoName,
+      id: id,
+      title: title,
+      done: false,
+      deleted: false,
+    })
+    await todoData.save()
+    // await next()
     ctx.body = postData
+    ctx.body = {
+      msg: '增加成功',
+      code: 200,
+    }
   }
 }
 

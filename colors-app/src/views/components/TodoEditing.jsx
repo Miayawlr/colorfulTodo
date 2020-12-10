@@ -2,7 +2,7 @@ import React, { useContext, useMemo, useState, useRef, useEffect } from 'react'
 import { DataContext } from 'views/components/DataProvider'
 import { useHistory, useLocation } from 'react-router-dom'
 import { StyledEditorContainer, EditorHeader, EdiotrBtn } from './todostyle'
-// import { putTodo } from 'model/mine'
+import { addItem } from 'model/mine'
 const useQuery = () => new URLSearchParams(useLocation().search)
 const TodoEditor = () => {
   const query = useQuery()
@@ -21,16 +21,16 @@ const TodoEditor = () => {
   }, [editorItem.colors])
   useEffect(() => {
     if (menu) {
-      // const putToDoMenu = async () => {
-      //   let params = {
-      //     name,
-      //     menu,
-      //   }
-      //   const res = await putTodo(JSON.stringify(params))
-      //   console.log(res)
-      // }
-      // putToDoMenu()
-      // setGoBack(true)
+      const putToDoMenu = async () => {
+        let params = {
+          name,
+          menu,
+        }
+        const res = await addItem(JSON.stringify(params))
+        await setGoBack(true)
+        console.log(res)
+      }
+      putToDoMenu()
     }
     textRef.current.value = ''
   }, [menu, name])
@@ -91,4 +91,3 @@ const TodoEditor = () => {
 }
 
 export default TodoEditor
-

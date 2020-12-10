@@ -65,6 +65,7 @@ const TodoDetails = ({ todoItem }) => {
       setTaskList(res.data[0].tasks)
       setColors(res.data[0].colors)
       setDetails({ ...res.data[0] })
+      console.log('hhh')
     }
     getDetails()
   }, [name, delStatus, reqStatus])
