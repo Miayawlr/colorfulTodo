@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
 import { useHistory, useLocation } from 'react-router-dom'
-import { useTransition, animated, useSpring } from 'react-spring'
 import { getMenuByName, editorStatus, delItem } from 'model/mine'
 import { DataContext } from 'views/components/DataProvider'
+import { useSpring, useTransition, animated } from 'react-spring'
 const useQuery = () => new URLSearchParams(useLocation().search)
 
 const TodoDetails = ({ todoItem }) => {
@@ -22,6 +22,7 @@ const TodoDetails = ({ todoItem }) => {
   const [delStatus, setDelStatus] = useState(false)
   const { reFetch } = useContext(DataContext)
   const { dispatchFecth } = useContext(DataContext)
+
   // router push
   const handleGoBack = () => {
     dispatchFecth(!reFetch)
@@ -78,13 +79,10 @@ const TodoDetails = ({ todoItem }) => {
   const handleRemoveTask = (id) => {
     setDelId(id)
   }
-
-  const transitions = useTransition(3, {
-    transform: 'all 0.5s ease',
-  })
+  // animated
+  const EditorAnimated = useSpring({ opacity: 1, from: { opacity: 0 } })
   return (
     <StyledDetails>
-      {/* <animated.div key={index} style={transitions[index]}></animated.div> */}
       <HeaderBar
         onBack={() => {
           handleGoBack()
@@ -104,12 +102,14 @@ const TodoDetails = ({ todoItem }) => {
         srIcon={false}
         onRemove={(v) => handleRemoveTask(v)}
       ></Details>
-      <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
-        <i
-          className={`fa fa-cube`}
-          style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
-        ></i>
-      </DetailsBtn>
+      <animated.div style={EditorAnimated}>
+        <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
+          <i
+            className={`fa fa-cube`}
+            style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
+          ></i>
+        </DetailsBtn>
+      </animated.div>
     </StyledDetails>
   )
 }

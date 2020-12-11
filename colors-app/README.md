@@ -43,6 +43,74 @@ npm run start / yarn start
 
 ![X JFY{}$LQD50`~%`B H64V](https://user-images.githubusercontent.com/52351095/100976825-08cf8780-357b-11eb-93ac-b0cd445d9c24.png)
 
+### 项目结构
+
+```
+├─public  //框架自带
+└─src
+    │  App.js
+    │  App.test.js
+    │  index.css
+    │  index.js
+    │
+    ├─components
+    │  ├─Avatar         // 头像组件
+    │  │      index.jsx
+    │  │      style.js
+    │  │
+    │  ├─Button        //  按钮组件
+    │  │      index.jsx
+    │  │      style.js
+    │  │
+    │  ├─GradientColor  //  背景色组件
+    │  │      index.jsx
+    │  │      style.js
+    │  │
+    │  ├─HeaderBar    //  状态栏组件
+    │  │      index.jsx
+    │  │      style.js
+    │  │
+    │  ├─Task       //  任务项组件
+    │  │      index.jsx
+    │  │      style.js
+    │  │
+    │  └─Todo     //  Todo 基础样式
+    │          index.jsx
+    │          style.js
+    │
+    ├─model     //  http 请求接口封装
+    │      mine.js
+    │
+    ├─routes   //  router 层
+    │      config.js
+    │      CRouter.jsx
+    │      index.js
+    │
+    ├─theme   // 公共css部分
+    │      layout.js
+    │      theme.js
+    │
+    ├─utils // 基础工具类
+    │      filterDay.js
+    │      rem.js      // rem适配
+    │      request.js  // axios 封装
+    │
+    └─views
+        │  layout.css
+        │  Layout.jsx  // 主视图
+        │
+        └─components  // 组装UI视图
+                DataProvider.jsx
+                Gradient.jsx
+                IndexLayout.jsx
+                style.js
+                Summary.jsx
+                TodoDetails.jsx
+                TodoEditing.jsx
+                TodoList.jsx
+                todostyle.js
+```
+
 ### 协议
 
 [MIT](./LICENSE)

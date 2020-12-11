@@ -22,7 +22,6 @@ const reducer = (state, action) => {
   }
 }
 const reFetchReducer = (state, action) => {
-  // console.log(action)
   return action
 }
 console.log(reFetchStatus)

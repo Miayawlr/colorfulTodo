@@ -1,6 +1,5 @@
 import React, { useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { useTransition, animated, useSpring } from 'react-spring'
 import StyledTodoContainer, { ToDo } from './todostyle'
 import { NEXT, PRE, DataContext } from 'views/components/DataProvider'
 
