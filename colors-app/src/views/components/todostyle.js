@@ -15,7 +15,7 @@ const StyledTodoContainer = styled.div`
   }
   > ul > li {
     flex: 1;
-    transition: transform 0.8s ease;
+    transition: transform 0.5s ease;
   }
   ul {
   }
@@ -39,12 +39,6 @@ const StyledDetails = styled.div`
 const Details = styled(Todo).attrs({ ShowTasks: true })`
   .todo-progress-line {
     height: 0.15rem !important;
-  }
-  .todo-header {
-    transform: translate3d(0, 2rem, 0);
-  }
-  .todo-body {
-    transform: translate3d(0, 4rem, 0);
   }
   /* .todo-header,
   .todo-body {

@@ -24,6 +24,7 @@ const reducer = (state, action) => {
 const reFetchReducer = (state, action) => {
   return action
 }
+console.log(reFetchStatus)
 const Data = ({ children }) => {
   const [toDoList, setToDoList] = useState([])
   const [count, setCount] = useState(0)

@@ -35,6 +35,7 @@ const TodoHeader = styled.div`
 const TodoBody = styled.section`
   padding: 0 ${({ theme }) => theme.basePadding}rem;
   transform: translate3d(0, 9rem, 0);
+
   .todo-tips {
     opacity: 0.6;
     font-size: 0.7rem;
@@ -75,6 +76,7 @@ const TodoBody = styled.section`
 `
 
 const TasksContainer = styled.div`
+  /* opacity: 0; */
   ul,
   ul > li {
     display: flex;

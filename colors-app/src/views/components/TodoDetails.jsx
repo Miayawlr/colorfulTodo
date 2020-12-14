@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
-import Modal from 'components/Modal'
 import { useHistory, useLocation } from 'react-router-dom'
 import { getMenuByName, editorStatus, delItem } from 'model/mine'
 import { DataContext } from 'views/components/DataProvider'
-
+import { useSpring, useTransition, animated } from 'react-spring'
 const useQuery = () => new URLSearchParams(useLocation().search)
 
 const TodoDetails = ({ todoItem }) => {
@@ -18,7 +17,6 @@ const TodoDetails = ({ todoItem }) => {
   const [colors, setColors] = useState([])
   const [id, setId] = useState(null)
   const [delId, setDelId] = useState(null)
-  const [modalShow, setModalShow] = useState(false) // modal
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
   const [delStatus, setDelStatus] = useState(false)
@@ -79,9 +77,10 @@ const TodoDetails = ({ todoItem }) => {
     setId(id)
   }
   const handleRemoveTask = (id) => {
-    // setDelId(id)
-    setModalShow(true)
+    setDelId(id)
   }
+  // animated
+  const EditorAnimated = useSpring({ opacity: 1, from: { opacity: 0 } })
   return (
     <StyledDetails>
       <HeaderBar
@@ -103,13 +102,14 @@ const TodoDetails = ({ todoItem }) => {
         srIcon={false}
         onRemove={(v) => handleRemoveTask(v)}
       ></Details>
-      <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
-        <i
-          className={`fa fa-cube`}
-          style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
-        ></i>
-      </DetailsBtn>
-      {modalShow && <Modal />}
+      <animated.div style={EditorAnimated}>
+        <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
+          <i
+            className={`fa fa-cube`}
+            style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
+          ></i>
+        </DetailsBtn>
+      </animated.div>
     </StyledDetails>
   )
 }
