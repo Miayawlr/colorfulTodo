@@ -2,7 +2,6 @@ import React, { useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import StyledTodoContainer, { ToDo } from './todostyle'
 import { NEXT, PRE, DataContext } from 'views/components/DataProvider'
-
 const translateEl = (currentIndex) => {
   return {
     transform: `translate3d(-${currentIndex * 100}%, 0, 0)`,

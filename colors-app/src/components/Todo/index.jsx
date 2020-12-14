@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import StyledTodo, { TodoBody, TodoHeader, TasksContainer } from './style'
 import Task from 'components/Task'
+import Modal from 'components/Modal'
+
+
 // DETA
 function TodoTasks({ color, children, onRemove, tasksList, onChange }) {
   const lastBottom = (lastIndex, i) => {
@@ -56,6 +59,7 @@ function Todo({
     const precentage = Math.round((doneCount / totalCount) * 100)
     setPre(precentage || 0)
   }, [tasks])
+
   return (
     <StyledTodo selected={selected} {...rest}>
       {/* Todo Header 头部 */}
@@ -92,6 +96,7 @@ function Todo({
           ></TodoTasks>
         )}
       </TodoBody>
+
     </StyledTodo>
   )
 }
