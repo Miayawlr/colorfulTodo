@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { StyledDetails, Details, DetailsBtn } from './todostyle'
 import HeaderBar from 'components/HeaderBar'
+import Modal from 'components/Modal'
 import { useHistory, useLocation } from 'react-router-dom'
 import { getMenuByName, editorStatus, delItem } from 'model/mine'
 import { DataContext } from 'views/components/DataProvider'
@@ -17,11 +18,8 @@ const TodoDetails = ({ todoItem }) => {
   const [colors, setColors] = useState([])
   const [id, setId] = useState(null)
   const [delId, setDelId] = useState(null)
-<<<<<<< HEAD
-=======
   const [shoId, setShoId] = useState(null)
   const [modalShow, setModalShow] = useState(false) // modal
->>>>>>> dev
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
   const [delStatus, setDelStatus] = useState(false)
@@ -115,10 +113,6 @@ const TodoDetails = ({ todoItem }) => {
             style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
           ></i>
         </DetailsBtn>
-<<<<<<< HEAD
-      </animated.div>
-    </StyledDetails>
-=======
         {modalShow && (
           <Modal
             onClose={() => {
@@ -142,7 +136,6 @@ const TodoDetails = ({ todoItem }) => {
         }
       `}</style>
     </>
->>>>>>> dev
   )
 }
 
