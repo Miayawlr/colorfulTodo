@@ -17,6 +17,11 @@ const TodoDetails = ({ todoItem }) => {
   const [colors, setColors] = useState([])
   const [id, setId] = useState(null)
   const [delId, setDelId] = useState(null)
+<<<<<<< HEAD
+=======
+  const [shoId, setShoId] = useState(null)
+  const [modalShow, setModalShow] = useState(false) // modal
+>>>>>>> dev
   const [doneStatus, setDoneStatus] = useState(null)
   const [reqStatus, setReqStatus] = useState(false)
   const [delStatus, setDelStatus] = useState(false)
@@ -77,40 +82,67 @@ const TodoDetails = ({ todoItem }) => {
     setId(id)
   }
   const handleRemoveTask = (id) => {
-    setDelId(id)
+    setShoId(id)
+    setModalShow(true)
   }
   // animated
   const EditorAnimated = useSpring({ opacity: 1, from: { opacity: 0 } })
   return (
-    <StyledDetails>
-      <HeaderBar
-        onBack={() => {
-          handleGoBack()
-        }}
-        color={'#666'}
-        title={details.name}
-        leftIcon={'chevron-left'}
-        rightIcon={'ellipsis-v'}
-      />
-      <Details
-        onChange={(status, id) => handleChangeStatus(status, id)}
-        style={{ boxShadow: 'none' }}
-        todoIcon={details.icon}
-        todoIconColor={colors[0]}
-        title={details.name}
-        tasks={taskList}
-        srIcon={false}
-        onRemove={(v) => handleRemoveTask(v)}
-      ></Details>
-      <animated.div style={EditorAnimated}>
+    <>
+      <StyledDetails>
+        <HeaderBar
+          onBack={() => {
+            handleGoBack()
+          }}
+          color={'#666'}
+          title={details.name}
+          leftIcon={'chevron-left'}
+          rightIcon={'ellipsis-v'}
+        />
+        <Details
+          onChange={(status, id) => handleChangeStatus(status, id)}
+          style={{ boxShadow: 'none' }}
+          todoIcon={details.icon}
+          todoIconColor={colors[0]}
+          title={details.name}
+          tasks={taskList}
+          srIcon={false}
+          onRemove={(v) => handleRemoveTask(v)}
+        ></Details>
         <DetailsBtn bgColor={colors} onClick={() => handlePushEdiotr()}>
           <i
             className={`fa fa-cube`}
             style={{ fontSize: `${1.1}rem`, fontWeight: 100 }}
           ></i>
         </DetailsBtn>
+<<<<<<< HEAD
       </animated.div>
     </StyledDetails>
+=======
+        {modalShow && (
+          <Modal
+            onClose={() => {
+              setModalShow((pre) => !pre)
+            }}
+            onConfirm={() => {
+              setModalShow((pre) => !pre)
+              setDelId(shoId)
+            }}
+          >
+            <p className={'modal-tips'}> 确认要删除吗?</p>
+          </Modal>
+        )}
+      </StyledDetails>
+      <style jsx="true">{`
+        .modal-tips {
+          line-height: 4.5rem;
+          text-align: center;
+          color: #3c3c3c;
+          font-size: 0.75rem;
+        }
+      `}</style>
+    </>
+>>>>>>> dev
   )
 }
 
