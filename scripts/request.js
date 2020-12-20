@@ -16,9 +16,11 @@ const app = (req, res) => {
   // 扩展res
   changeRes(res)
   res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    ' Origin, X-Requested-With, Content-Type, Accept'
+  )
   res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,DELETE,GET,PUT,POST')
-  res.setHeader('Access-Control-Max-Age', 1728000)
-  // res.setHeader('Content-Type', 'application/json;charset=utf-8')
   const pathName = url.parse(req.url).pathname
   const method = req.method.toLowerCase()
   console.log(method)
