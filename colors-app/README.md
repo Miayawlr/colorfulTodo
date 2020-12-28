@@ -12,7 +12,7 @@ ReactHooks + React-router-dom + axios + styledComponents + reactSpring
 #### 注: 使用高版本 node
 
 ```shell
-git clone git@github.com:Miayawlr/colorfulTodo.git
+git clone https://github.com/Miayawlr/colorfulTodo/tree/master/colors-app
 
 cd todo-app
 
